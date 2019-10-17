@@ -1,0 +1,33 @@
+#Ejercicio: experimento realizado para conocer el impacto de las siguientes variables
+#x1 =fuerza (gm)
+#x2 = potencia (mw)
+#x3 = temperactura (C°)
+#x4 = tiempo (ms)
+#y = resistencia (gm)
+x1<-c(30,40,30,40,30,40,30,40,30,40,30,40,30,40,30,40,25,45,35,35,35,35,35,35,35,35,35,35,35,35)
+x2<-c(60,60,90,90,60,60,90,90,60,60,90,90,60,60,90,90,75,75,45,105,75,75,75,75,75,75,75,75,75,75)
+x3<-c(175,175,175,175,225,225,225,225,175,175,175,175,225,225,225,225,200,200,200,200,150,250,200,200,200,200,200,200,200,200)
+x4<-c(15,15,15,15,15,15,15,15,25,25,25,25,25,25,25,25,20,20,20,20,20,20,10,30,20,20,20,20,20,20)
+y = c(26.2,26.3,39.8,39.7,38.6,35.5,48.8,37.8,26.6,23.4,38.6,52.1,39.5,32.3,43,56,35.2,46.9,22.7,58.7,34.5,44,35.7,41.8,36.5,37.6,40.3,46,27.8,40.3)
+
+length(x1)
+mdl = lm(y ~ x1+x2+x3+x4)
+
+summary(mdl)
+
+# y = -37.48+.2117x1+.4983x2+.1296x3+.2583x4
+# INTERPRETACIÓN x3: Se estima que .1297gm es el cambio promedio en resisencia asociado con un 
+# aumento de 1 grado de temperatura cuando las otra 3 v.i. se mantienen en fijos
+
+#Ej2: Realizar una estimación puntual de la resistencia cuando se tiene una fuerza de 35, 
+# potencia de 75, temp de 200 y tiempo de 20
+#mrm$coefficients
+
+y1 = -37.48+.2117*35+.4983*75+.1296*200+.2583*20
+y1
+
+mdl$coefficients #betas
+names(mdl)
+mdl$fitted.values # y gorritos
+predict(mdl)
+plot(x1,y)
